@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Dorks - Advanced Search Security Tools</title>
+    <link rel="stylesheet" href="homepage.css" />
+    <link rel="icon" href="Screenshot 2025-04-15 201534.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <!-- Canvas for 3D background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="#" class="navbar-brand">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+          />
+        </svg>
+        <h1>Google Dorks</h1>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="homepage.html" class="nav-menu-link active">Home</a></li>
+        <li>
+          <a href="documentation.html" class="nav-menu-link">Documentation</a>
+        </li>
+        <li>
+          <a href="dorkgenerator.html" class="nav-menu-link">Dorks Generator</a>
+        </li>
+        <li>
+          <a href="queryhistory.html" class="nav-menu-link">Query History</a>
+        </li>
+        <li><a href="admin.html" class="nav-menu-link">Admin Panel</a></li>
+      </ul>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title typing-effect" id="typing-title">
+            Advanced Google Dork Security Tool
+          </h1>
+          <p class="hero-subtitle">
+            Secure your digital footprint with powerful search operators and
+            discover vulnerabilities before hackers do.
+          </p>
+          <div class="hero-buttons">
+            <a href="dorkgenerator.html" class="btn">Start Dorking</a>
+            <a href="documentation.html" class="btn btn-outline">Learn More</a>
+          </div>
+
+          <div class="code-snippet">
+            <div class="code-header">
+              <div class="code-dot dot-red"></div>
+              <div class="code-dot dot-yellow"></div>
+              <div class="code-dot dot-green"></div>
+              <span class="code-title">Google Dork Example</span>
+            </div>
+            <div class="code-line">
+              <span class="code-prompt">></span>
+              <span class="code-text"
+                >site:example.com intitle:"index of" -inurl:htm
+                -inurl:html</span
+              >
+            </div>
+            <div class="code-line">
+              <span class="code-prompt">></span>
+              <span class="code-text" id="typing-code"
+                >Searching for exposed directories...</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section HTML -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title">Powerful Features</h2>
+        <div class="features-grid">
+          <!-- Feature Card 1 -->
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Advanced Dork Generator</h3>
+              <p class="feature-desc">
+                Create powerful search queries with our intuitive generator.
+                Find security vulnerabilities, exposed documents, and sensitive
+                information indexed by search engines.
+              </p>
+            </div>
+            <a href="dorkgenerator.html" class="feature-link"
+              >Try Generator <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <!-- Feature Card 2 -->
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Security Assessment</h3>
+              <p class="feature-desc">
+                Scan your own domains for exposed sensitive data, misconfigured
+                servers, and security vulnerabilities before malicious actors
+                find them.
+              </p>
+            </div>
+            <a href="documentation.html" class="feature-link"
+              >Learn More <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <!-- Feature Card 3 -->
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <i class="fas fa-history"></i>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Query History</h3>
+              <p class="feature-desc">
+                Save and organize your search queries for future reference.
+                Track your security assessments and monitor improvements over
+                time.
+              </p>
+            </div>
+            <a href="queryhistory.html" class="feature-link"
+              >View History <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <!-- Feature Card 4 -->
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="feature-content">
+              <h3 class="feature-title">Comprehensive Documentation</h3>
+              <p class="feature-desc">
+                Access detailed guides, tutorials, and best practices for using
+                Google Dorks responsibly for security research.
+              </p>
+            </div>
+            <a href="documentation.html" class="feature-link"
+              >Read Docs <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search Demo Section -->
+    <section class="search-demo" id="demo">
+      <div class="container">
+        <h2 class="section-title">Try a Quick Dork</h2>
+        <div class="search-container">
+          <form class="search-form">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Enter your Google Dork query..."
+              id="search-demo-input"
+            />
+            <button type="submit" class="btn">Search</button>
+          </form>
+          <h3 class="examples-title">Common Examples:</h3>
+          <div class="examples-grid">
+            <div
+              class="example-item"
+              data-query="site:example.com filetype:pdf confidential"
+            >
+              Find confidential PDFs
+            </div>
+            <div
+              class="example-item"
+              data-query='intitle:"index of" intext:config.php'
+            >
+              Exposed config files
+            </div>
+            <div class="example-item" data-query="inurl:admin intitle:login">
+              Admin login pages
+            </div>
+            <div
+              class="example-item"
+              data-query='intext:"sql syntax near" intext:"mysql_fetch_array"'
+            >
+              SQL error pages
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-queries">0</div>
+            <div class="stat-label">Queries Generated</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-users">0</div>
+            <div class="stat-label">Active Users</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-vulns">0</div>
+            <div class="stat-label">Vulnerabilities Found</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-sites">0</div>
+            <div class="stat-label">Websites Protected</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="cta-title">Ready to Secure Your Digital Footprint?</h2>
+        <p class="cta-subtitle">
+          Start using our advanced Google Dork tools today to identify security
+          vulnerabilities before they become problems.
+        </p>
+        <a href="dorkgenerator.html" class="btn">Get Started Now</a>
+      </div>
+    </section>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-column">
+          <h3 class="footer-title">SecureSearch</h3>
+          <p
+            style="
+              color: var(--footer-link);
+              margin-bottom: 16px;
+              font-weight: bold;
+            "
+          >
+            Advanced search security tools to protect your digital footprint
+          </p>
+          <div style="display: flex; gap: 16px">
+            <a
+              href="#"
+              aria-label="Twitter"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="GitHub"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Platform</h3>
+          <ul class="footer-links">
+            <li>
+              <a href="documentation.html" class="footer-link">Documentation</a>
+            </li>
+            <li>
+              <a href="dorkgenerator.html" class="footer-link"
+                >Dorks Generator</a
+              >
+            </li>
+            <li>
+              <a href="queryhistory.html" class="footer-link">Query History</a>
+            </li>
+            <li><a href="admin.html" class="footer-link">Admin Panel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Knowledge Base</a></li>
+            <li><a href="#" class="footer-link">API Documentation</a></li>
+            <li><a href="#" class="footer-link">Best Practices</a></li>
+            <li><a href="#" class="footer-link">Security Alerts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2025 SecureSearch. All rights reserved.</p>
+          <p style="margin-top: 8px; font-size: 12px">
+            Designed for security professionals. Use responsibly.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="homepage.js"></script>
+  </body>
+</html>

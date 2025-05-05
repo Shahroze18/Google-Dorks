@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DorksShield - Documentation</title>
+    <link rel="stylesheet" href="documentation.css" />
+    <link rel="icon" href="Screenshot 2025-04-15 201534.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+  <body>
+    <!-- Canvas for 3D background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="#" class="navbar-brand">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+          />
+        </svg>
+        <h1>Google Dorks</h1>
+      </a>
+      <ul class="navbar-menu">
+        <li>
+          <a href="homepage.html" class="nav-menu-link">Home</a>
+        </li>
+        <li>
+          <a href="documentation.html" class="nav-menu-link active"
+            >Documentation</a
+          >
+        </li>
+        <li>
+          <a href="dorkgenerator.html" class="nav-menu-link">Dorks Generator</a>
+        </li>
+        <li>
+          <a href="queryhistory.html" class="nav-menu-link">Query History</a>
+        </li>
+        <li>
+          <a href="admin.html" class="nav-menu-link">Admin Panel</a>
+        </li>
+      </ul>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Main Documentation Content -->
+    <header class="docs-header">
+      <div class="container">
+        <h1>Google Dorking Documentation</h1>
+        <p>
+          Master the art of advanced search techniques for enhanced
+          cybersecurity and information retrieval
+        </p>
+      </div>
+    </header>
+
+    <div class="container docs-container">
+      <!-- Filter Buttons -->
+      <div class="filters">
+        <button class="filter-btn active" data-target="intro">
+          Introduction
+        </button>
+        <button class="filter-btn" data-target="operators">
+          Common Operators
+        </button>
+        <button class="filter-btn" data-target="ethical">
+          Ethical Hacking
+        </button>
+        <button class="filter-btn" data-target="optimization">
+          Search Optimization
+        </button>
+        <button class="filter-btn" data-target="interactive">
+          Interactive Examples
+        </button>
+        <button class="filter-btn" data-target="templates">
+          Predefined Templates
+        </button>
+      </div>
+
+      <!-- Introduction Section -->
+      <section id="intro" class="content-section active">
+        <h2>Introduction to Google Dorks</h2>
+        <p>
+          Google Dorks, also known as Google Dorking or Google Hacking, is a
+          technique that utilizes advanced search operators in Google's search
+          engine to find specific information that might not be readily
+          available through simple searches.
+        </p>
+
+        <div class="warning-box">
+          <strong>Warning:</strong> Google Dorking can be used for legitimate
+          purposes like security testing, but it can also be misused. Always
+          ensure you have proper authorization before searching for sensitive
+          information on websites you don't own.
+        </div>
+
+        <h3>What are Google Dorks?</h3>
+        <p>
+          Google Dorks are specialized search queries that leverage Google's
+          advanced search operators to find specific information. These
+          operators allow users to refine searches to uncover information that
+          might be difficult to find using basic search techniques.
+        </p>
+
+        <h3>History and Purpose</h3>
+        <p>
+          The term "Google Dorking" was coined by Johnny Long, who compiled a
+          database of these specialized searches. Initially discovered by
+          security researchers, Google Dorks became popular tools for finding
+          vulnerabilities in websites and uncovering information that wasn't
+          intended to be publicly accessible.
+        </p>
+
+        <h3>Legal and Ethical Considerations</h3>
+        <p>
+          While Google Dorking itself is legal, how you use the information you
+          find can cross legal and ethical boundaries. Always:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 15px">
+          <li>Obtain proper authorization before performing security tests</li>
+          <li>Respect privacy and confidentiality</li>
+          <li>Report vulnerabilities responsibly</li>
+          <li>Follow applicable laws and regulations</li>
+        </ul>
+
+        <h3>Basic Usage</h3>
+        <p>
+          Google Dorks combine regular search terms with special operators to
+          create powerful queries. Here's a simple example:
+        </p>
+        <div class="code-block">site:example.com filetype:pdf confidential</div>
+        <p>
+          This query searches for PDF files containing the word "confidential"
+          only on the domain example.com.
+        </p>
+      </section>
+
+      <!-- Common Operators Section -->
+      <section id="operators" class="content-section">
+        <h2>Common Google Dorks Operators</h2>
+        <p>
+          Google's search operators are powerful tools for refining your search
+          queries and finding exactly what you're looking for. Here are the most
+          commonly used operators:
+        </p>
+
+        <table class="operator-table">
+          <thead>
+            <tr>
+              <th>Operator</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>site:</td>
+              <td>Limits results to a specific domain or website</td>
+              <td>site:harvard.edu research papers</td>
+            </tr>
+            <tr>
+              <td>intitle:</td>
+              <td>Searches for pages with specific text in the title</td>
+              <td>intitle:"index of" passwords</td>
+            </tr>
+            <tr>
+              <td>inurl:</td>
+              <td>Searches for pages with specific text in the URL</td>
+              <td>inurl:admin inurl:login</td>
+            </tr>
+            <tr>
+              <td>filetype:</td>
+              <td>Searches for specific file types</td>
+              <td>filetype:pdf "employee handbook"</td>
+            </tr>
+            <tr>
+              <td>intext:</td>
+              <td>Searches for specific text in the body of the page</td>
+              <td>intext:"confidential do not distribute"</td>
+            </tr>
+            <tr>
+              <td>cache:</td>
+              <td>Shows Google's cached version of a page</td>
+              <td>cache:example.com</td>
+            </tr>
+            <tr>
+              <td>ext:</td>
+              <td>
+                Alternative to filetype, searches for specific file extensions
+              </td>
+              <td>ext:sql intext:password</td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>Excludes results containing certain words</td>
+              <td>security vulnerabilities -patch</td>
+            </tr>
+            <tr>
+              <td>OR</td>
+              <td>Shows results with either term (must be capitalized)</td>
+              <td>cybersecurity OR "information security"</td>
+            </tr>
+            <tr>
+              <td>"..."</td>
+              <td>Searches for an exact phrase</td>
+              <td>"database connection string"</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Advanced Operator Combinations</h3>
+        <p>
+          Multiple operators can be combined to create highly specific searches:
+        </p>
+        <div class="code-block">
+          site:example.com intext:username filetype:log
+        </div>
+        <p>
+          This searches for log files containing the word "username" on
+          example.com.
+        </p>
+
+        <h3>Wildcard Operators</h3>
+        <p>The asterisk (*) can be used as a wildcard in your searches:</p>
+        <div class="code-block">site:*.edu "final * schedule"</div>
+        <p>
+          This searches for final exam/test/assessment schedules on educational
+          institution websites.
+        </p>
+      </section>
+
+      <!-- Ethical Hacking Section -->
+      <section id="ethical" class="content-section">
+        <h2>Ethical Hacking Use Cases</h2>
+        <p>
+          Google Dorking is a valuable technique for security professionals and
+          ethical hackers. When used responsibly, it helps identify security
+          vulnerabilities before malicious actors can exploit them.
+        </p>
+
+        <h3>Vulnerability Assessment</h3>
+        <p>
+          Security professionals can use Google Dorks to discover exposed
+          sensitive information:
+        </p>
+        <div class="code-block">
+          site:target-domain.com filetype:conf OR filetype:cnf OR
+          filetype:config
+        </div>
+        <p>
+          This search might reveal configuration files that shouldn't be
+          publicly accessible.
+        </p>
+
+        <h3>Finding Exposed Databases</h3>
+        <p>Database files sometimes get accidentally exposed to the web:</p>
+        <div class="code-block">intitle:"index of" intext:connect.inc</div>
+        <p>This might reveal database connection files with credentials.</p>
+
+        <h3>Server Information Disclosure</h3>
+        <p>
+          Servers sometimes reveal too much information about their
+          configuration:
+        </p>
+        <div class="code-block">
+          intitle:"Apache Status" "Apache Server Status for"
+        </div>
+        <p>
+          This can expose details about server configurations that could be
+          exploited.
+        </p>
+
+        <h3>Open Directory Listings</h3>
+        <p>Finding directories with directory listing enabled:</p>
+        <div class="code-block">intitle:"Index of /" +server.at +.txt</div>
+        <p>This might reveal sensitive directories that aren't protected.</p>
+
+        <h3>Discovering Publicly Exposed Login Pages</h3>
+        <p>Finding potentially unsecured login portals:</p>
+        <div class="code-block">
+          site:example.com inurl:admin OR inurl:login OR inurl:portal
+        </div>
+
+        <div class="warning-box">
+          <strong>Important:</strong> Always obtain proper authorization before
+          performing any security testing on websites or systems. Unauthorized
+          security testing may violate laws like the Computer Fraud and Abuse
+          Act (CFAA) in the US or similar laws in other countries.
+        </div>
+      </section>
+
+      <!-- Search Optimization Section -->
+      <section id="optimization" class="content-section">
+        <h2>Search Optimization Techniques</h2>
+        <p>
+          Google Dorking isn't just for security professionals—it's a powerful
+          technique for anyone looking to refine their search results and find
+          specific information efficiently.
+        </p>
+
+        <h3>Research Optimization</h3>
+        <p>
+          Academic and professional researchers can benefit from targeted
+          searches:
+        </p>
+        <div class="code-block">
+          site:.edu OR site:.gov filetype:pdf "climate change research"
+          after:2022
+        </div>
+        <p>
+          This finds recent climate change research papers from educational or
+          government institutions.
+        </p>
+
+        <h3>Finding Specific Document Types</h3>
+        <p>Locate presentations, spreadsheets, or other document types:</p>
+        <div class="code-block">
+          site:example.com (filetype:ppt OR filetype:pptx) "quarterly results"
+        </div>
+        <p>
+          This finds PowerPoint presentations about quarterly results on a
+          specific site.
+        </p>
+
+        <h3>Date-Based Filtering</h3>
+        <p>Limit results to specific time periods:</p>
+        <div class="code-block">
+          machine learning advancements after:2023-01-01 before:2023-12-31
+        </div>
+        <p>
+          This focuses on machine learning advancements specifically from 2023.
+        </p>
+
+        <h3>Excluding Irrelevant Results</h3>
+        <p>Refine searches by excluding terms that pollute your results:</p>
+        <div class="code-block">
+          programming tutorials -youtube -udemy -coursera
+        </div>
+        <p>
+          This finds programming tutorials while excluding major learning
+          platforms, potentially finding more unique resources.
+        </p>
+
+        <h3>Finding Competitor Information</h3>
+        <p>Business professionals can research competitors:</p>
+        <div class="code-block">
+          site:linkedin.com "works at Competitor Inc" "marketing manager"
+        </div>
+        <p>This can help identify key personnel at competitor companies.</p>
+      </section>
+
+      <!-- Interactive Examples Section -->
+      <section id="interactive" class="content-section">
+        <h2>Interactive Examples</h2>
+        <p>
+          Try out different Google Dork operators to see how they work. Enter
+          your query below to generate a formatted search example. You can then
+          copy this query and paste it directly into Google.
+        </p>
+
+        <div class="interactive-box">
+          <h3>Google Dork Builder</h3>
+          <input
+            type="text"
+            id="dork-input"
+            class="dork-input"
+            placeholder="Example: site:example.com filetype:pdf confidential"
+          />
+          <button id="generate-btn" class="btn">Generate Example</button>
+
+          <div id="result-box" class="result-box">
+            <h4>Formatted Query:</h4>
+            <div id="formatted-query"></div>
+            <h4 style="margin-top: 15px">What This Searches For:</h4>
+            <div id="query-explanation"></div>
+            <button id="copy-btn" class="btn" style="margin-top: 15px">
+              Copy to Clipboard
+            </button>
+          </div>
+        </div>
+
+        <h3>Quick Examples</h3>
+        <p>
+          Click on any of these example queries to see them in the generator
+          above:
+        </p>
+
+        <div
+          style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px"
+        >
+          <button
+            class="example-btn"
+            data-query="site:github.com inurl:password"
+          >
+            Find Password Files on GitHub
+          </button>
+          <button
+            class="example-btn"
+            data-query="filetype:pdf site:edu cybersecurity best practices"
+          >
+            Cybersecurity Best Practices PDFs
+          </button>
+          <button class="example-btn" data-query="intitle:index.of inurl:admin">
+            Open Directory Admin Folders
+          </button>
+          <button
+            class="example-btn"
+            data-query='site:linkedin.com "data scientist" "machine learning" "looking for opportunities"'
+          >
+            LinkedIn Job Seekers
+          </button>
+        </div>
+      </section>
+
+      <!-- Predefined Templates Section -->
+      <section id="templates" class="content-section">
+        <h2>Predefined Templates Showcase</h2>
+        <p>
+          Predefined query templates can significantly improve search accuracy
+          and efficiency. Here's how our template system can help you find
+          exactly what you're looking for.
+        </p>
+
+        <div class="templates-grid">
+          <div class="template-card">
+            <h4>Security Vulnerability Scanner</h4>
+            <p>Find potentially exposed sensitive files across domains.</p>
+            <div class="code-block">
+              site:[TARGET_DOMAIN] (filetype:pdf OR filetype:xls OR
+              filetype:xlsx) intext:"confidential"
+            </div>
+            <p>
+              Customizable parameters: domain, file types, and sensitive
+              keywords.
+            </p>
+          </div>
+
+          <div class="template-card">
+            <h4>Academic Research Finder</h4>
+            <p>Locate scholarly articles from reputable institutions.</p>
+            <div class="code-block">
+              site:.edu filetype:pdf "[RESEARCH_TOPIC]" after:[YEAR]
+            </div>
+            <p>
+              Finds recent academic papers on specific topics from educational
+              institutions.
+            </p>
+          </div>
+
+          <div class="template-card">
+            <h4>Exposed Database Detector</h4>
+            <p>Find potentially exposed database files.</p>
+            <div class="code-block">
+              intitle:"index of" (db OR database OR sql) (dump OR sql OR backup)
+            </div>
+            <p>
+              Scans for open directory listings containing database backups.
+            </p>
+          </div>
+
+          <div class="template-card">
+            <h4>API Key Finder</h4>
+            <p>Locate potentially exposed API keys in GitHub repositories.</p>
+            <div class="code-block">
+              site:github.com "[API_SERVICE]" "api key"
+            </div>
+            <p>
+              Replace [API_SERVICE] with services like AWS, Stripe, Google Maps,
+              etc.
+            </p>
+          </div>
+
+          <div class="template-card">
+            <h4>Technical Documentation Finder</h4>
+            <p>
+              Find technical guides and documentation for specific technologies.
+            </p>
+            <div class="code-block">
+              filetype:pdf "[TECHNOLOGY]" "technical documentation" OR "user
+              guide" OR "administrator guide"
+            </div>
+            <p>
+              Easily locate official technical documentation for any platform or
+              technology.
+            </p>
+          </div>
+
+          <div class="template-card">
+            <h4>Log File Explorer</h4>
+            <p>
+              Discover exposed log files that might contain sensitive
+              information.
+            </p>
+            <div class="code-block">
+              filetype:log (access OR error OR transaction) intext:username OR
+              password OR email
+            </div>
+            <p>
+              Helps security professionals identify leaked credentials in
+              publicly accessible logs.
+            </p>
+          </div>
+
+          <div class="template-card">
+            <h4>Career Opportunity Finder</h4>
+            <p>Find job postings for specific roles or companies.</p>
+            <div class="code-block">
+              site:linkedin.com OR site:indeed.com "[JOB_TITLE]"
+              "[COMPANY_NAME]" "apply" after:[RECENT_DATE]
+            </div>
+            <p>
+              Streamlines job searches by finding recent postings across
+              multiple platforms.
+            </p>
+          </div>
+        </div>
+
+        <h3>Template Benefits</h3>
+        <p>Using our predefined templates offers several advantages:</p>
+        <ul style="margin-left: 20px; margin-bottom: 20px">
+          <li>
+            Consistent Results: Templates ensure you use the most effective
+            operators every time
+          </li>
+          <li>
+            Time Efficiency: Skip the trial-and-error process with proven search
+            patterns
+          </li>
+          <li>
+            Customization: All templates have customizable parameters for your
+            specific needs
+          </li>
+          <li>
+            Education: Learn advanced search techniques by examining how
+            templates are constructed
+          </li>
+        </ul>
+
+        <div class="interactive-box">
+          <h3>Template Customization</h3>
+          <p>
+            Choose a template and customize the parameters to generate your
+            personalized Google Dork query:
+          </p>
+
+          <select
+            id="template-select"
+            style="
+              width: 100%;
+              padding: 10px;
+              margin: 15px 0;
+              background: rgba(0, 0, 0, 0.4);
+              color: var(--text-primary);
+              border: 1px solid var(--border-color);
+              border-radius: 6px;
+            "
+          >
+            <option value="">-- Select a template --</option>
+            <option value="security">Security Vulnerability Scanner</option>
+            <option value="academic">Academic Research Finder</option>
+            <option value="database">Exposed Database Detector</option>
+            <option value="api">API Key Finder</option>
+            <option value="docs">Technical Documentation Finder</option>
+          </select>
+
+          <div id="template-params" style="display: none; margin-bottom: 15px">
+            <!-- Parameters will be dynamically added here -->
+          </div>
+
+          <button id="apply-template" class="btn" style="display: none">
+            Generate Query
+          </button>
+
+          <div id="template-result" class="result-box" style="margin-top: 20px">
+            <!-- Results will appear here -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-column">
+          <h3 class="footer-title">SecureSearch</h3>
+          <p
+            style="
+              color: var(--footer-link);
+              margin-bottom: 16px;
+              font-weight: bold;
+            "
+          >
+            Advanced search security tools to protect your digital footprint
+          </p>
+          <div style="display: flex; gap: 16px">
+            <a
+              href="#"
+              aria-label="Twitter"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="GitHub"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Platform</h3>
+          <ul class="footer-links">
+            <li><a href="homepage.html" class="footer-link">Home</a></li>
+            <li>
+              <a href="dorkgenerator.html" class="footer-link"
+                >Dorks Generator</a
+              >
+            </li>
+            <li>
+              <a href="queryhistory.html" class="footer-link">Query History</a>
+            </li>
+            <li>
+              <a href="admin.html" class="footer-link">Admin Panel</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Knowledge Base</a></li>
+            <li><a href="#" class="footer-link">API Documentation</a></li>
+            <li><a href="#" class="footer-link">Best Practices</a></li>
+            <li><a href="#" class="footer-link">Security Alerts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2025 SecureSearch. All rights reserved.</p>
+          <p style="margin-top: 8px; font-size: 12px">
+            Designed for security professionals. Use responsibly.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="documentation.js"></script>
+  </body>
+</html>

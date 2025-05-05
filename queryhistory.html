@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Dorks - Query History & Bookmarks</title>
+    <link rel="stylesheet" href="queryhistory.css" />
+    <link rel="icon" href="Screenshot 2025-04-15 201534.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+  <body>
+    <!-- Canvas for 3D background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation Bar (from your code) -->
+    <nav class="navbar">
+      <a href="#" class="navbar-brand">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+          />
+        </svg>
+        <h1>Google Dorks</h1>
+      </a>
+      <ul class="navbar-menu">
+        <li>
+          <a href="homepage.html" class="nav-menu-link">Home</a>
+        </li>
+        <li>
+          <a href="documentation.html" class="nav-menu-link">Documentation</a>
+        </li>
+        <li>
+          <a href="dorkgenerator.html" class="nav-menu-link">Dorks Generator</a>
+        </li>
+        <li>
+          <a href="queryhistory.html" class="nav-menu-link active"
+            >Query History</a
+          >
+        </li>
+        <li>
+          <a href="admin.html" class="nav-menu-link">Admin Panel</a>
+        </li>
+      </ul>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Title -->
+      <div class="page-title fade-in">
+        <h2>Query History & Bookmarks</h2>
+        <p>
+          Save your favorite Google Dork queries and operators for quick
+          reference
+        </p>
+      </div>
+
+      <!-- Content Columns -->
+      <div class="content-container">
+        <!-- Left Column - Saved Queries -->
+        <div class="column slide-up">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-history"></i>
+                Saved Queries
+              </h3>
+              <button class="card-action" id="add-query-btn">
+                <i class="fas fa-plus"></i>
+                Add New
+              </button>
+            </div>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                id="query-search"
+                placeholder="Search saved queries..."
+              />
+              <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <ul class="queries-list" id="queries-list">
+              <!-- Examples will be populated by JS -->
+            </ul>
+
+            <div class="empty-state" id="empty-queries" style="display: none">
+              <i class="fas fa-folder-open"></i>
+              <p>No saved queries yet</p>
+              <button class="btn-primary" id="add-first-query">
+                Add Your First Query
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Favorite Operators -->
+        <div class="column slide-up">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-star"></i>
+                Favorite Operators
+              </h3>
+              <button class="card-action" id="add-operator-btn">
+                <i class="fas fa-plus"></i>
+                Add New
+              </button>
+            </div>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-input"
+                id="operator-search"
+                placeholder="Search operators..."
+              />
+              <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="operators-grid" id="operators-grid">
+              <!-- Examples will be populated by JS -->
+            </div>
+
+            <div class="empty-state" id="empty-operators" style="display: none">
+              <i class="fas fa-star"></i>
+              <p>No favorite operators yet</p>
+              <button class="btn-primary" id="add-first-operator">
+                Add Your First Operator
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Add Query Modal -->
+    <div class="modal" id="query-modal">
+      <div class="modal-content scale-in">
+        <div class="modal-header">
+          <h3 class="modal-title" id="query-modal-title">Add New Query</h3>
+          <button class="close-modal" id="close-query-modal">&times;</button>
+        </div>
+        <form id="query-form">
+          <div class="form-group">
+            <label for="query-name" class="form-label">Query Name</label>
+            <input
+              type="text"
+              id="query-name"
+              class="form-input"
+              placeholder="E.g., Find PDF files"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="query-text" class="form-label">Query String</label>
+            <textarea
+              id="query-text"
+              class="form-textarea"
+              placeholder="E.g., filetype:pdf site:example.com"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="query-notes" class="form-label">Notes (Optional)</label>
+            <textarea
+              id="query-notes"
+              class="form-textarea"
+              placeholder="Add notes about this query..."
+            ></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="cancel-query">
+              Cancel
+            </button>
+            <button type="submit" class="btn-primary">Save Query</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Operator Modal -->
+    <div class="modal" id="operator-modal">
+      <div class="modal-content scale-in">
+        <div class="modal-header">
+          <h3 class="modal-title" id="operator-modal-title">
+            Add Favorite Operator
+          </h3>
+          <button class="close-modal" id="close-operator-modal">&times;</button>
+        </div>
+        <form id="operator-form">
+          <div class="form-group">
+            <label for="operator-name" class="form-label">Operator</label>
+            <input
+              type="text"
+              id="operator-name"
+              class="form-input"
+              placeholder="E.g., site:"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="operator-desc" class="form-label">Description</label>
+            <textarea
+              id="operator-desc"
+              class="form-textarea"
+              placeholder="E.g., Limits results to a specific domain"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="operator-example" class="form-label">Example</label>
+            <input
+              type="text"
+              id="operator-example"
+              class="form-input"
+              placeholder="E.g., site:example.com"
+            />
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="cancel-operator">
+              Cancel
+            </button>
+            <button type="submit" class="btn-primary">Save Operator</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-column">
+          <h3 class="footer-title">SecureSearch</h3>
+          <p style="color: var(--footer-link); margin-bottom: 16px">
+            Advanced search security tools to protect your digital footprint
+          </p>
+          <div style="display: flex; gap: 16px">
+            <a
+              href="#"
+              aria-label="Twitter"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="GitHub"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Platform</h3>
+          <ul class="footer-links">
+            <li><a href="homepage.html" class="footer-link">Home</a></li>
+            <li>
+              <a href="documentation.html" class="footer-link">Documentation</a>
+            </li>
+            <li>
+              <a href="dorkgenerator.html" class="footer-link"
+                >Dorks Generator</a
+              >
+            </li>
+            <li>
+              <a href="admin.html" class="footer-link">Admin Panel</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Knowledge Base</a></li>
+            <li><a href="#" class="footer-link">API Documentation</a></li>
+            <li><a href="#" class="footer-link">Best Practices</a></li>
+            <li><a href="#" class="footer-link">Security Alerts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2025 SecureSearch. All rights reserved.</p>
+          <p style="margin-top: 8px; font-size: 12px">
+            Designed for security professionals. Use responsibly.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="queryhistory.js"></script>
+  </body>
+</html>

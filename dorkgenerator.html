@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Google Dork Generator</title>
+    <link rel="stylesheet" href="dorkgenerator.css" />
+    <link rel="icon" href="Screenshot 2025-04-15 201534.png" />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+  <body>
+    <!-- Canvas for 3D background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="#" class="navbar-brand">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+          />
+        </svg>
+        <h1>Google Dorks</h1>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="homepage.html" class="nav-menu-link">Home</a></li>
+        <li>
+          <a href="documentation.html" class="nav-menu-link">Documentation</a>
+        </li>
+        <li>
+          <a href="dorkgenerator.html" class="nav-menu-link active"
+            >Dorks Generator</a
+          >
+        </li>
+        <li>
+          <a href="queryhistory.html" class="nav-menu-link">Query History</a>
+        </li>
+        <li><a href="admin.html" class="nav-menu-link">Admin Panel</a></li>
+      </ul>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container dork-generator">
+      <h1 class="section-title">Smart Google Dork Generator</h1>
+      <p class="section-description">
+        Enter a keyword or topic and get query suggestions instantly.
+      </p>
+
+      <!-- Input Field -->
+      <div class="input-container">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="e.g., login, admin panel, pdf reports"
+        />
+        <button class="search-btn" id="search-btn">Generate</button>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="filter-controls">
+        <div class="filter-group">
+          <select class="filter-dropdown" id="site-extension">
+            <option value="">Site Extension</option>
+            <option value=".com">Site: .com</option>
+            <option value=".edu">Site: .edu</option>
+            <option value=".gov">Site: .gov</option>
+            <option value=".org">Site: .org</option>
+            <option value=".net">Site: .net</option>
+          </select>
+
+          <div class="filter-checkbox">
+            <input type="checkbox" id="filetype" value="filetype:" />
+            <label for="filetype">filetype:</label>
+            <span class="tooltip">
+              <i class="fas fa-info-circle tooltip-icon"></i>
+              <span class="tooltip-text"
+                >Search for specific file types like PDF, DOC, XLS, etc.</span
+              >
+            </span>
+          </div>
+
+          <div class="filter-checkbox">
+            <input type="checkbox" id="intitle" value="intitle:" />
+            <label for="intitle">intitle:</label>
+            <span class="tooltip">
+              <i class="fas fa-info-circle tooltip-icon"></i>
+              <span class="tooltip-text"
+                >Search for pages with specific text in the title.</span
+              >
+            </span>
+          </div>
+
+          <div class="filter-checkbox">
+            <input type="checkbox" id="inurl" value="inurl:" />
+            <label for="inurl">inurl:</label>
+            <span class="tooltip">
+              <i class="fas fa-info-circle tooltip-icon"></i>
+              <span class="tooltip-text"
+                >Search for pages with specific text in the URL.</span
+              >
+            </span>
+          </div>
+
+          <div class="filter-checkbox">
+            <input type="checkbox" id="cache" value="cache:" />
+            <label for="cache">cache:</label>
+            <span class="tooltip">
+              <i class="fas fa-info-circle tooltip-icon"></i>
+              <span class="tooltip-text"
+                >View Google's cached version of a specific page.</span
+              >
+            </span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-toggle">
+            <span>Only show secure (https)</span>
+            <label class="toggle-label">
+              <input type="checkbox" id="secure-toggle" class="toggle-input" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="filter-toggle">
+            <span>Show public folders</span>
+            <label class="toggle-label">
+              <input type="checkbox" id="folders-toggle" class="toggle-input" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Queries -->
+      <div class="suggested-queries" id="suggested-queries">
+        <!-- Query cards will be generated here -->
+      </div>
+
+      <!-- Export Button -->
+      <div class="export-container">
+        <button class="export-btn" id="export-btn">
+          <i class="fas fa-download"></i>
+          Export Queries
+        </button>
+      </div>
+    </div>
+
+    <!-- Add Filter Button -->
+    <button class="add-filter-btn" id="add-filter-btn">
+      <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Add Filter Modal -->
+    <div class="modal" id="filter-modal">
+      <div class="modal-content">
+        <h2 class="modal-title">Add Custom Filter</h2>
+        <button class="modal-close" id="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <form class="filter-form" id="filter-form">
+          <div class="form-group">
+            <label class="form-label">Filter Type</label>
+            <select class="form-select" id="filter-type">
+              <option value="intext:">intext: (Text in page content)</option>
+              <option value="site:">site: (Specific domain/site)</option>
+              <option value="filetype:">filetype: (Type of file)</option>
+              <option value="intitle:">intitle: (Text in page title)</option>
+              <option value="inurl:">inurl: (Text in URL)</option>
+              <option value="ext:">ext: (File extension)</option>
+              <option value="link:">link: (Pages linking to URL)</option>
+              <option value="after:">after: (Pages indexed after date)</option>
+              <option value="before:">
+                before: (Pages indexed before date)
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Filter Value</label>
+            <input
+              type="text"
+              class="form-input"
+              id="filter-value"
+              placeholder="Enter value for this filter"
+            />
+          </div>
+
+          <div class="form-buttons">
+            <button
+              type="button"
+              class="form-btn btn-cancel"
+              id="cancel-filter"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="form-btn btn-add">Add Filter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-column">
+          <h3 class="footer-title">SecureSearch</h3>
+          <p
+            style="
+              color: var(--footer-link);
+              margin-bottom: 16px;
+              font-weight: bold;
+            "
+          >
+            Advanced search security tools to protect your digital footprint
+          </p>
+          <div style="display: flex; gap: 16px">
+            <a
+              href="#"
+              aria-label="Twitter"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="GitHub"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Platform</h3>
+          <ul class="footer-links">
+            <li><a href="homepage.html" class="footer-link">Home</a></li>
+            <li>
+              <a href="documentation.html" class="footer-link">Documentation</a>
+            </li>
+            <li>
+              <a href="queryhistory.html" class="footer-link">Query History</a>
+            </li>
+            <li>
+              <a href="admin.html" class="footer-link">Admin Panel</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Knowledge Base</a></li>
+            <li><a href="#" class="footer-link">API Documentation</a></li>
+            <li><a href="#" class="footer-link">Best Practices</a></li>
+            <li><a href="#" class="footer-link">Security Alerts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2025 SecureSearch. All rights reserved.</p>
+          <p style="margin-top: 8px; font-size: 12px">
+            Designed for security professionals. Use responsibly.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="dorkgenerator.js"></script>
+  </body>
+</html>

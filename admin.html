@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DorksShield - Smarter Web Searches</title>
+    <link rel="icon" href="Screenshot 2025-04-15 201534.png" />
+    <link rel="stylesheet" href="admin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+  <body>
+    <!-- Canvas for 3D background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="#" class="navbar-brand">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+          />
+        </svg>
+        <h1>Google Dorks</h1>
+      </a>
+      <ul class="navbar-menu">
+        <li>
+          <a href="homepage.html" class="nav-menu-link">Home</a>
+        </li>
+        <li>
+          <a href="documentation.html" class="nav-menu-link">Documentation</a>
+        </li>
+        <li>
+          <a href="dorkgenerator.html" class="nav-menu-link">Dorks Generator</a>
+        </li>
+        <li>
+          <a href="queryhistory.html" class="nav-menu-link">Query History</a>
+        </li>
+        <li>
+          <a href="#best-practices" class="nav-menu-link active">Admin Panel</a>
+        </li>
+      </ul>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Landing Page Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Admin Dashboard</h1>
+        <p class="hero-description">
+          Manage users, monitor security alerts, and configure system settings
+          from a single interface.
+        </p>
+      </div>
+    </section>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <div class="container">
+        <div class="dashboard-header">
+          <h2 class="dashboard-title">Admin Controls</h2>
+          <button class="btn">Generate Report</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <div class="tab active" data-tab="users">User Management</div>
+          <div class="tab" data-tab="security">Security Alerts</div>
+          <div class="tab" data-tab="settings">System Configuration</div>
+        </div>
+
+        <!-- User Management Tab -->
+        <div class="tab-content active" id="users-tab">
+          <div class="card user-management">
+            <div class="card-header">
+              <h3 class="card-title">User Management</h3>
+              <button class="btn">Add New User</button>
+            </div>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Last Active</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#1001</td>
+                    <td>John Doe</td>
+                    <td>john.doe@example.com</td>
+                    <td>Administrator</td>
+                    <td><span class="status status-active">Active</span></td>
+                    <td>2 mins ago</td>
+                    <td>
+                      <button class="btn">Edit</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#1002</td>
+                    <td>Jane Smith</td>
+                    <td>jane.smith@example.com</td>
+                    <td>Moderator</td>
+                    <td><span class="status status-active">Active</span></td>
+                    <td>15 mins ago</td>
+                    <td>
+                      <button class="btn">Edit</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#1003</td>
+                    <td>Robert Johnson</td>
+                    <td>robert.j@example.com</td>
+                    <td>User</td>
+                    <td><span class="status status-banned">Banned</span></td>
+                    <td>3 days ago</td>
+                    <td>
+                      <button class="btn">Edit</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#1004</td>
+                    <td>Emily Clark</td>
+                    <td>emily.c@example.com</td>
+                    <td>Moderator</td>
+                    <td><span class="status status-pending">Pending</span></td>
+                    <td>1 hour ago</td>
+                    <td>
+                      <button class="btn">Edit</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#1005</td>
+                    <td>Michael Wilson</td>
+                    <td>m.wilson@example.com</td>
+                    <td>User</td>
+                    <td><span class="status status-active">Active</span></td>
+                    <td>5 mins ago</td>
+                    <td>
+                      <button class="btn">Edit</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security Alerts Tab -->
+        <div class="tab-content" id="security-tab" style="display: none">
+          <div class="card security-alerts">
+            <div class="card-header">
+              <h3 class="card-title">Security Alerts - Flagged Searches</h3>
+              <button class="btn">Export Logs</button>
+            </div>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Alert ID</th>
+                    <th>User</th>
+                    <th>Search Query</th>
+                    <th>Flag Reason</th>
+                    <th>Timestamp</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#SEC-001</td>
+                    <td>robert.j@example.com</td>
+                    <td>"how to bypass security systems"</td>
+                    <td>Security threat pattern</td>
+                    <td>Apr 20, 2025 10:23 AM</td>
+                    <td><span class="status status-high">High</span></td>
+                    <td>Open</td>
+                  </tr>
+                  <tr>
+                    <td>#SEC-002</td>
+                    <td>anonymous</td>
+                    <td>"illegal download methods for protected content"</td>
+                    <td>Copyright infringement</td>
+                    <td>Apr 20, 2025 09:15 AM</td>
+                    <td><span class="status status-medium">Medium</span></td>
+                    <td>Under Review</td>
+                  </tr>
+                  <tr>
+                    <td>#SEC-003</td>
+                    <td>emma.p@example.com</td>
+                    <td>"personal data of [redacted]"</td>
+                    <td>Privacy violation</td>
+                    <td>Apr 19, 2025 04:50 PM</td>
+                    <td><span class="status status-high">High</span></td>
+                    <td>Resolved</td>
+                  </tr>
+                  <tr>
+                    <td>#SEC-004</td>
+                    <td>james.wilson@example.com</td>
+                    <td>"script to scrape competitor website data"</td>
+                    <td>Potential web scraping</td>
+                    <td>Apr 19, 2025 01:35 PM</td>
+                    <td><span class="status status-low">Low</span></td>
+                    <td>False Positive</td>
+                  </tr>
+                  <tr>
+                    <td>#SEC-005</td>
+                    <td>sarah.t@example.com</td>
+                    <td>"how to create multiple accounts on same site"</td>
+                    <td>Evasion techniques</td>
+                    <td>Apr 19, 2025 11:20 AM</td>
+                    <td><span class="status status-medium">Medium</span></td>
+                    <td>Under Review</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Configuration Tab -->
+        <div class="tab-content" id="settings-tab" style="display: none">
+          <div class="grid">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">General Settings</h3>
+              </div>
+              <div class="settings-list">
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">System Maintenance Mode</div>
+                    <div class="settings-description">
+                      Temporarily disable user access for maintenance
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">User Registration</div>
+                    <div class="settings-description">
+                      Allow new users to register
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">Email Notifications</div>
+                    <div class="settings-description">
+                      Send alert emails to administrators
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Security Settings</h3>
+              </div>
+              <div class="settings-list">
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">Two-Factor Authentication</div>
+                    <div class="settings-description">
+                      Require 2FA for all admin accounts
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">IP Whitelisting</div>
+                    <div class="settings-description">
+                      Restrict admin access to approved IPs
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">
+                      Auto-ban After Failed Attempts
+                    </div>
+                    <div class="settings-description">
+                      Temporarily ban IPs after 5 failed login attempts
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Content Filtering</h3>
+              </div>
+              <div class="settings-list">
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">Strict Mode</div>
+                    <div class="settings-description">
+                      Apply stricter content filtering rules
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">
+                      Auto-flag Suspicious Searches
+                    </div>
+                    <div class="settings-description">
+                      Automatically flag the potentially harmful searches
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="settings-item">
+                  <div>
+                    <div class="settings-label">Content Moderation AI</div>
+                    <div class="settings-description">
+                      Use AI to assist with content moderation
+                    </div>
+                  </div>
+                  <label class="toggle">
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">System Backup & Restore</h3>
+            </div>
+            <div>
+              <p>
+                Configure automated backups and access system restore points.
+              </p>
+              <br />
+              <button class="btn">Create Backup Now</button>
+              <button class="btn" style="background-color: var(--border-color)">
+                Restore from Backup
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-column">
+          <h3 class="footer-title">SecureSearch</h3>
+          <p
+            style="
+              color: var(--footer-link);
+              margin-bottom: 16px;
+              font-weight: bold;
+            "
+          >
+            Advanced search security tools to protect your digital footprint
+          </p>
+          <div style="display: flex; gap: 16px">
+            <a
+              href="#"
+              aria-label="Twitter"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="GitHub"
+              style="color: var(--footer-link); font-size: 20px"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Platform</h3>
+          <ul class="footer-links">
+            <li><a href="homepage.html" class="footer-link">Home</a></li>
+            <li>
+              <a href="documentation.html" class="footer-link">Documentation</a>
+            </li>
+            <li>
+              <a href="dorkgenerator.html" class="footer-link"
+                >Dorks Generator</a
+              >
+            </li>
+            <li>
+              <a href="queryhistory.html" class="footer-link">Query History</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Knowledge Base</a></li>
+            <li><a href="#" class="footer-link">API Documentation</a></li>
+            <li><a href="#" class="footer-link">Best Practices</a></li>
+            <li><a href="#" class="footer-link">Security Alerts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2025 SecureSearch. All rights reserved.</p>
+          <p style="margin-top: 8px; font-size: 12px">
+            Designed for security professionals. Use responsibly.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="admin.js"></script>
+  </body>
+</html>
